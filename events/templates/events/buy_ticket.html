@@ -1,0 +1,18 @@
+<h1>Buy Ticket for {{ event.title }}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if final_price %}
+        <p><strong>Final Price:</strong> {{ final_price }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <button type="submit">Complete Purchase</button>
+</form>
+
+<a href="{% url 'event_detail' event.id %}">Back</a>

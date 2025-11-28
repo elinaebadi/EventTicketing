@@ -1,0 +1,38 @@
+<h1>{{ event.title }}</h1>
+
+<p>Venue: {{ event.venue }}</p>
+<p>Date: {{ event.date }}</p>
+<p>Price: {{ event.price }}</p>
+<hr>
+
+{% if is_organizer %}
+    <h2>Discount Codes</h2>
+    {% if discount_codes %}
+        <ul>
+            {% for d in discount_codes %}
+                <li>{{ d.code }} — {{ d.percent_off }}%</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No discount codes.</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Participants</h2>
+    {% if tickets %}
+        <ul>
+            {% for t in tickets %}
+                <li>{{ t.full_name }} — {{ t.email }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No participants yet.</p>
+    {% endif %}
+{% endif %}
+
+<hr>
+
+<a href="{% url 'buy_ticket' event.id %}">Buy Ticket</a>
+<br>
+<a href="{% url 'apply_discount' event.id %}">Apply Discount Code</a>

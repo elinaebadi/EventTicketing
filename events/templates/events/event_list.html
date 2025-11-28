@@ -1,0 +1,15 @@
+<h1>Event List</h1>
+
+{% if events %}
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{% url 'event_detail' event.id %}">
+                    {{ event.title }} — {{ event.date }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No events available.</p>
+{% endif %}
