@@ -7,6 +7,9 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'venue', 'date', 'price', 'capacity']
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
 
 class TicketPurchaseForm(forms.Form):
     full_name = forms.CharField(max_length=100)

@@ -62,12 +62,7 @@ def create_event(request):
             event = form.save(commit=False)
             event.organizer = request.user
             event.save()
-
-            logger.info(
-                f"Event created | Organizer: {request.user.username} | "
-                f"Event: {event.title}"
-            )
-
+            logger.info(f"Event created by {request.user.username}: {event.title}")
             messages.success(request, "Event created successfully!")
             return redirect('event_list')
     else:

@@ -125,3 +125,47 @@ LINE 1: ...."valid_until", "events_discountcode"."max_uses", "events_di...
 [2025-12-30 15:01:14,193] INFO django.server: "GET /events/event/1/create_discount/ HTTP/1.1" 200 934
 [2025-12-30 15:01:18,469] INFO django.server: "GET /events/ HTTP/1.1" 200 1119
 [2025-12-30 15:01:18,491] WARNING django.server: "GET /static/styles.css HTTP/1.1" 404 1844
+[INFO] 2025-12-30 16:14:55,166 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2025-12-30 16:15:03,234 django.request - Not Found: /
+[WARNING] 2025-12-30 16:15:26,611 events.views - Signup failed: invalid form data
+[INFO] 2025-12-30 16:16:06,745 events.views - New user registered: admin
+[INFO] 2025-12-30 16:20:00,455 events.views - Event created | Organizer: dina | Event: abc
+[INFO] 2025-12-30 16:20:11,537 events.views - Event viewed | Event: abc | User: dina
+[WARNING] 2025-12-30 16:21:24,711 django.request - Not Found: /favicon.ico
+[WARNING] 2025-12-30 16:21:36,161 django.request - Not Found: /favicon.ico
+[WARNING] 2025-12-30 16:22:02,422 django.request - Not Found: /favicon.ico
+[INFO] 2025-12-30 16:22:32,930 events.views - Event viewed | Event: abc | User: admin
+[INFO] 2025-12-30 16:22:44,181 events.views - Ticket purchased | User: admin | Event: abc | Price: 2000000.00
+[INFO] 2025-12-30 16:22:44,243 events.views - Event viewed | Event: abc | User: admin
+[INFO] 2025-12-30 16:23:12,023 events.views - Event created | Organizer: admin | Event: title
+[INFO] 2025-12-30 16:23:18,876 events.views - Event viewed | Event: title | User: admin
+[INFO] 2025-12-30 16:26:54,433 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2025-12-30 16:26:55,363 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2025-12-30 16:28:55,986 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\forms.py changed, reloading.
+[INFO] 2025-12-30 16:28:56,722 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2025-12-30 16:29:27,450 django.request - Not Found: /
+[WARNING] 2025-12-30 16:29:40,813 events.views - Signup failed: invalid form data
+[INFO] 2025-12-30 16:30:11,464 events.views - New user registered: ella
+[INFO] 2025-12-30 16:31:14,225 events.views - Event created by ella: startup
+[INFO] 2025-12-30 16:31:25,945 events.views - Event viewed | Event: startup | User: ella
+[WARNING] 2025-12-30 16:31:36,296 django.request - Not Found: /favicon.ico
+[INFO] 2025-12-30 16:32:29,052 events.views - Discount created | Event: startup | Code: startup50 | By: ella
+[INFO] 2025-12-30 16:32:29,115 events.views - Event viewed | Event: startup | User: ella
+[INFO] 2025-12-30 16:32:47,218 events.views - Event viewed | Event: startup | User: elina
+[WARNING] 2025-12-30 16:33:11,292 events.views - Invalid discount | Event: startup | Code: startup5 | User: elina
+[WARNING] 2025-12-30 16:33:14,014 events.views - Invalid discount | Event: startup | Code: startup50 | User: elina
+[WARNING] 2025-12-30 16:33:21,398 events.views - Invalid discount | Event: startup | Code: startup50 | User: elina
+[INFO] 2025-12-30 16:33:25,393 events.views - Event viewed | Event: startup | User: elina
+[INFO] 2025-12-30 16:33:38,800 events.views - Ticket purchased | User: elina | Event: startup | Price: 500000.00
+[INFO] 2025-12-30 16:33:38,863 events.views - Event viewed | Event: startup | User: elina
+[INFO] 2025-12-30 16:33:49,113 events.views - Event viewed | Event: startup | User: ella
+[INFO] 2025-12-30 16:34:30,727 events.views - Discount created | Event: startup | Code: startup30 | By: ella
+[INFO] 2025-12-30 16:34:30,784 events.views - Event viewed | Event: startup | User: ella
+[INFO] 2025-12-30 16:34:40,204 events.views - Event viewed | Event: startup | User: dina
+[INFO] 2025-12-30 16:34:54,013 events.views - Ticket purchased | User: dina | Event: startup | Price: 350000.00
+[INFO] 2025-12-30 16:34:54,080 events.views - Event viewed | Event: startup | User: dina
+[INFO] 2025-12-30 16:35:07,404 events.views - Event viewed | Event: startup | User: testuser
+[WARNING] 2025-12-30 16:35:07,433 django.request - Not Found: /favicon.ico
+[INFO] 2025-12-30 16:35:20,714 events.views - Ticket purchased | User: testuser | Event: startup | Price: 350000.00
+[INFO] 2025-12-30 16:35:20,887 events.views - Event viewed | Event: startup | User: testuser
+[WARNING] 2025-12-30 16:35:20,912 django.request - Not Found: /favicon.ico
