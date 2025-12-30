@@ -1,15 +1,50 @@
-<h1>Event List</h1>
+{% load static %}
 
-{% if events %}
-    <ul>
-        {% for event in events %}
-            <li>
-                <a href="{% url 'event_detail' event.id %}">
-                    {{ event.title }} — {{ event.date }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No events available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event List</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Event List</h1>
+
+        <nav>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}!</span>
+
+                <!-- Logout form -->
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+
+                <!-- Create Event link -->
+                <a href="{% url 'create_event' %}">Create New Event</a>
+
+            {% else %}
+                <a href="{% url 'signup' %}">Sign up</a> or <a href="{% url 'login' %}">Log in</a> to create an event.
+            {% endif %}
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% if events %}
+            <ul>
+                {% for event in events %}
+                    <li>
+                        <a href="{% url 'event_detail' event.id %}">
+                            {{ event.title }} — {{ event.date }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No events available.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

@@ -33,6 +33,20 @@
 
 <hr>
 
-<a href="{% url 'buy_ticket' event.id %}">Buy Ticket</a>
-<br>
-<a href="{% url 'apply_discount' event.id %}">Apply Discount Code</a>
+{% if user.is_authenticated %}
+    {% if user_ticket %}
+        <p><strong>Your Ticket:</strong> Purchased at {{ user_ticket.purchased_at }} — Final Price: {{ user_ticket.final_price }}</p>
+    {% else %}
+        <a href="{% url 'buy_ticket' event.id %}">Buy Ticket</a>
+    {% endif %}
+{% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to buy a ticket.</p>
+{% endif %}
+
+<hr>
+
+{% if is_organizer %}
+    <a href="{% url 'create_discount' event.id %}">Create Discount Code</a>
+{% endif %}
+
+<a href="{% url 'event_list' %}">Back to Event List</a>

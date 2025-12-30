@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from decimal import Decimal
 
 # Each event is created by an organizer (a user)
 class Event(models.Model):
@@ -12,8 +14,30 @@ class Event(models.Model):
     capacity = models.PositiveIntegerField()  # how many tickets available
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def apply_discount(self, code=None):
+        final_price = self.price
+        discount_percent = 0
+
+        if code:
+            try:
+                discount = self.discount_codes.get(code=code)
+                if not discount.is_valid():
+                    return final_price, discount_percent, "Discount code expired or max uses reached."
+
+                discount_percent = discount.percent_off
+                final_price = self.price - (self.price * Decimal(discount_percent) / 100)
+
+            except DiscountCode.DoesNotExist:
+                return final_price, discount_percent, "Invalid discount code."
+
+        return final_price, discount_percent, None
+
     def __str__(self):
         return self.title
+
+    @property
+    def remaining_capacity(self):
+        return self.capacity - self.tickets.count()
 
 
 # Discount codes for events
@@ -22,9 +46,21 @@ class DiscountCode(models.Model):
     code = models.CharField(max_length=50, unique=True)
     percent_off = models.PositiveIntegerField(default=0)
     valid_until = models.DateTimeField(null=True, blank=True)
+    max_uses = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.code} ({self.percent_off}% off)"
+
+    @property
+    def uses_count(self):
+        return Ticket.objects.filter(event=self.event, discount_code=self.code).count()
+
+    def is_valid(self):
+        if self.valid_until and self.valid_until < timezone.now():
+            return False
+        if self.max_uses > 0 and self.uses_count >= self.max_uses:
+            return False
+        return True
 
 
 # A ticket represents one participant in an event

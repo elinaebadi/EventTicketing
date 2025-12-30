@@ -1,0 +1,9 @@
+<h1>Create Discount for {{ event.title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Discount</button>
+</form>
+
+<p><a href="{% url 'event_detail' event.id %}">Back to Event</a></p>

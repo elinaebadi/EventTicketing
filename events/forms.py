@@ -1,5 +1,7 @@
 from django import forms
-from .models import Event
+from .models import Event, DiscountCode
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -17,3 +19,18 @@ class TicketPurchaseForm(forms.Form):
 
 class DiscountApplyForm(forms.Form):
     code = forms.CharField(max_length=50, label="Discount Code")
+
+class DiscountCodeForm(forms.ModelForm):
+    class Meta:
+        model = DiscountCode
+        fields = ['code', 'percent_off', 'valid_until', 'max_uses']
+        widgets = {
+            'valid_until': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
