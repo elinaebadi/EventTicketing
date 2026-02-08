@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ticketing System{% endblock %}</title>
+</head>
+<body>
+
+<header>
+    <h1>Ticketing System</h1>
+
+    <nav>
+        {% if user.is_authenticated %}
+            <span>Welcome, {{ user.username }}</span>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            <a href="{% url 'create_event' %}">Create Event</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
+    </nav>
+    <hr>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

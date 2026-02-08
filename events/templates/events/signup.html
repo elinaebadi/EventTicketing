@@ -1,4 +1,9 @@
-<h1>Sign Up</h1>
+{% extends 'events/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<h2>Sign Up</h2>
 
 <form method="post">
     {% csrf_token %}
@@ -7,3 +12,4 @@
 </form>
 
 <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+{% endblock %}

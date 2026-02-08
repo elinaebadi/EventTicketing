@@ -1,15 +1,15 @@
-<h1>Create New Event</h1>
+{% extends 'events/base.html' %}
 
-{% if messages %}
-    {% for message in messages %}
-        <p style="color:green;">{{ message }}</p>
-    {% endfor %}
-{% endif %}
+{% block title %}Create Event{% endblock %}
 
-<form method="POST">
+{% block content %}
+<h2>Create New Event</h2>
+
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Create Event</button>
 </form>
 
-<a href="{% url 'event_list' %}">Back to Event List</a>
+<p><a href="{% url 'event_list' %}">Back to Event List</a></p>
+{% endblock %}

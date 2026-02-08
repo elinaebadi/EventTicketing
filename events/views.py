@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
+from .tokens import email_verification_token
 import logging
 
 logger = logging.getLogger(__name__)
@@ -14,10 +18,10 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-
             logger.info(f"New user registered: {user.username}")
 
             login(request, user)
+            logger.info(f"User logged in after signup: {user.username}")
             messages.success(request, "Account created successfully!")
             return redirect('event_list')
     else:
@@ -27,7 +31,9 @@ def signup(request):
     return render(request, 'events/signup.html', {'form': form})
 
 def event_list(request):
-    events = Event.objects.all().order_by('date')  # fetch events from DB
+    events = Event.objects.with_remaining_capacity().order_by('date')
+    user_str = request.user.username if request.user.is_authenticated else "Anonymous"
+    logger.info(f"Event list viewed by {user_str} | Total events: {len(events)}")
     return render(request, 'events/event_list.html', {'events': events})
 
 def event_detail(request, event_id):
@@ -162,3 +168,23 @@ def buy_ticket(request, event_id):
             'final_price': final_price,
             'discount': discount_applied
         })
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+        logger.warning(f"Activation failed | Invalid UID: {uidb64}")
+
+    if user is not None and email_verification_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        logger.info(f"User activated and logged in: {user.username}")
+        messages.success(request, "Your account has been activated and you are now logged in.")
+        return redirect('event_list')
+    else:
+        logger.warning(f"Activation failed | Token invalid for UID: {uidb64}")
+        messages.error(request, "Activation link is invalid!")
+        return redirect('signup')

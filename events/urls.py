@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .views import activate
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.event_list, name='event_list'),
@@ -8,4 +10,7 @@ urlpatterns = [
     path('event/<int:event_id>/buy/', views.buy_ticket, name='buy_ticket'),
     path('event/<int:event_id>/create_discount/', views.create_discount, name='create_discount'),
     path('signup/', views.signup, name='signup'),
+    path('activate/<uidb64>/<token>/', activate, name='activate'),
+    path('login/', auth_views.LoginView.as_view(template_name='events/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

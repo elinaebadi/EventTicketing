@@ -2,6 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from decimal import Decimal
+from django.db.models import Count
+
+
+class EventManager(models.Manager):
+    def upcoming(self):
+        return self.filter(date__gte=timezone.now())
+
+    def with_remaining_capacity(self):
+        return self.annotate(
+            sold=Count('tickets')
+        ).filter(capacity__gt=models.F('sold'))
+
 
 # Each event is created by an organizer (a user)
 class Event(models.Model):
@@ -13,6 +25,8 @@ class Event(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.PositiveIntegerField()  # how many tickets available
     created_at = models.DateTimeField(auto_now_add=True)
+
+    objects = EventManager()
 
     def apply_discount(self, code=None):
         final_price = self.price
@@ -76,3 +90,5 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"Ticket for {self.full_name} - {self.event.title}"
+
+

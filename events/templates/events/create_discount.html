@@ -1,4 +1,9 @@
-<h1>Create Discount for {{ event.title }}</h1>
+{% extends 'events/base.html' %}
+
+{% block title %}Create Discount{% endblock %}
+
+{% block content %}
+<h2>Create Discount for {{ event.title }}</h2>
 
 <form method="post">
     {% csrf_token %}
@@ -7,3 +12,4 @@
 </form>
 
 <p><a href="{% url 'event_detail' event.id %}">Back to Event</a></p>
+{% endblock %}

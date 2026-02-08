@@ -169,3 +169,184 @@ LINE 1: ...."valid_until", "events_discountcode"."max_uses", "events_di...
 [INFO] 2025-12-30 16:35:20,714 events.views - Ticket purchased | User: testuser | Event: startup | Price: 350000.00
 [INFO] 2025-12-30 16:35:20,887 events.views - Event viewed | Event: startup | User: testuser
 [WARNING] 2025-12-30 16:35:20,912 django.request - Not Found: /favicon.ico
+[INFO] 2026-02-08 11:44:59,455 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:10:00,411 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\ticketing\settings.py changed, reloading.
+[INFO] 2026-02-08 12:10:01,263 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:10:29,927 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:11:27,233 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:11:30,252 django.request - Not Found: /
+[ERROR] 2026-02-08 12:11:37,319 django.request - Internal Server Error: /events/
+Traceback (most recent call last):
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "events_event" does not exist
+LINE 1: ...d_at", COUNT("events_ticket"."id") AS "sold" FROM "events_ev...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\projects\Django Projects\event_ticketing\events\views.py", line 55, in event_list
+    return render(request, 'events/event_list.html', {'events': events})
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\template\defaulttags.py", line 326, in render
+    if match:
+       ^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\models\query.py", line 398, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Elina\.virtualenvs\djangodev\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "events_event" does not exist
+LINE 1: ...d_at", COUNT("events_ticket"."id") AS "sold" FROM "events_ev...
+                                                             ^
+
+[INFO] 2026-02-08 12:13:47,615 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:14:10,052 django.request - Not Found: /
+[INFO] 2026-02-08 12:22:49,531 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\ticketing\settings.py changed, reloading.
+[INFO] 2026-02-08 12:22:50,183 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:28:18,597 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:29:03,712 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\tokens.py changed, reloading.
+[INFO] 2026-02-08 12:29:04,329 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:29:11,515 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:29:12,782 django.request - Not Found: /
+[INFO] 2026-02-08 12:35:51,522 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:35:52,753 django.request - Not Found: /
+[INFO] 2026-02-08 12:36:38,130 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:36:38,812 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:37:27,974 django.request - Not Found: /
+[WARNING] 2026-02-08 12:38:51,387 django.request - Not Found: /
+[INFO] 2026-02-08 12:41:17,596 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:41:18,722 django.request - Not Found: /
+[INFO] 2026-02-08 12:51:59,581 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 12:52:01,526 django.request - Not Found: /
+[INFO] 2026-02-08 12:54:31,777 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:54:32,996 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:55:29,728 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:55:30,344 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:55:55,012 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:55:55,727 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:56:07,089 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:56:07,659 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:58:03,137 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:58:03,887 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:58:07,122 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:58:07,801 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:58:18,157 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:58:18,780 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:58:37,315 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:58:37,981 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:59:03,628 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:59:04,211 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:59:09,482 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:59:10,168 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 12:59:17,472 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 12:59:18,071 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 13:08:28,478 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 13:08:30,016 django.request - Not Found: /
+[WARNING] 2026-02-08 13:08:37,306 events.views - Signup failed: invalid form data
+[INFO] 2026-02-08 13:09:01,090 events.views - New user registered: haha
+[INFO] 2026-02-08 13:13:09,845 django.utils.autoreload - Watching for file changes with StatReloader
+[WARNING] 2026-02-08 13:13:11,029 django.request - Not Found: /
+[INFO] 2026-02-08 13:14:16,047 events.views - Event created by admin: seminar
+[INFO] 2026-02-08 13:14:28,786 events.views - Event viewed | Event: seminar | User: dina
+[INFO] 2026-02-08 13:14:42,920 events.views - Ticket purchased | User: dina | Event: seminar | Price: 200000.00
+[INFO] 2026-02-08 13:14:42,974 events.views - Event viewed | Event: seminar | User: dina
+[INFO] 2026-02-08 13:14:58,766 events.views - Event viewed | Event: seminar | User: admin
+[INFO] 2026-02-08 13:16:09,407 events.views - Discount created | Event: seminar | Code: code50 | By: admin
+[INFO] 2026-02-08 13:16:09,465 events.views - Event viewed | Event: seminar | User: admin
+[INFO] 2026-02-08 13:16:21,891 events.views - Event viewed | Event: seminar | User: dina
+[INFO] 2026-02-08 13:16:30,349 events.views - Event viewed | Event: seminar | User: elina
+[INFO] 2026-02-08 13:16:44,384 events.views - Ticket purchased | User: elina | Event: seminar | Price: 100000.00
+[INFO] 2026-02-08 13:16:44,438 events.views - Event viewed | Event: seminar | User: elina
+[INFO] 2026-02-08 13:17:38,924 events.views - Event created by haha: mine
+[INFO] 2026-02-08 13:17:42,739 events.views - Event viewed | Event: seminar | User: haha
+[INFO] 2026-02-08 13:17:46,927 events.views - Event viewed | Event: mine | User: haha
+[INFO] 2026-02-08 13:18:16,444 events.views - Discount created | Event: mine | Code: ha70 | By: haha
+[INFO] 2026-02-08 13:18:16,498 events.views - Event viewed | Event: mine | User: haha
+[INFO] 2026-02-08 13:18:23,826 events.views - Event viewed | Event: mine | User: meow
+[WARNING] 2026-02-08 13:18:36,980 events.views - Invalid discount | Event: mine | Code: ha70 | User: meow
+[INFO] 2026-02-08 13:18:56,420 events.views - Event viewed | Event: mine | User: haha
+[INFO] 2026-02-08 13:27:57,422 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 13:27:58,103 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 13:28:59,713 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 13:29:00,323 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 13:29:55,502 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 13:29:56,200 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 13:30:06,623 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 13:30:07,217 django.utils.autoreload - Watching for file changes with StatReloader
+[INFO] 2026-02-08 13:30:15,588 django.utils.autoreload - D:\projects\Django Projects\event_ticketing\events\views.py changed, reloading.
+[INFO] 2026-02-08 13:30:16,218 django.utils.autoreload - Watching for file changes with StatReloader

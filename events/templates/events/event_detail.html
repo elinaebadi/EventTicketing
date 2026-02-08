@@ -1,12 +1,18 @@
-<h1>{{ event.title }}</h1>
+{% extends 'events/base.html' %}
 
-<p>Venue: {{ event.venue }}</p>
-<p>Date: {{ event.date }}</p>
-<p>Price: {{ event.price }}</p>
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ event.title }}</h2>
+
+<p><strong>Venue:</strong> {{ event.venue }}</p>
+<p><strong>Date:</strong> {{ event.date }}</p>
+<p><strong>Price:</strong> {{ event.price }}</p>
+
 <hr>
 
 {% if is_organizer %}
-    <h2>Discount Codes</h2>
+    <h3>Discount Codes</h3>
     {% if discount_codes %}
         <ul>
             {% for d in discount_codes %}
@@ -17,9 +23,7 @@
         <p>No discount codes.</p>
     {% endif %}
 
-    <hr>
-
-    <h2>Participants</h2>
+    <h3>Participants</h3>
     {% if tickets %}
         <ul>
             {% for t in tickets %}
@@ -35,7 +39,11 @@
 
 {% if user.is_authenticated %}
     {% if user_ticket %}
-        <p><strong>Your Ticket:</strong> Purchased at {{ user_ticket.purchased_at }} — Final Price: {{ user_ticket.final_price }}</p>
+        <p>
+            <strong>Your Ticket:</strong>
+            Purchased at {{ user_ticket.purchased_at }} —
+            Final Price: {{ user_ticket.final_price }}
+        </p>
     {% else %}
         <a href="{% url 'buy_ticket' event.id %}">Buy Ticket</a>
     {% endif %}
@@ -43,10 +51,9 @@
     <p><a href="{% url 'login' %}">Log in</a> to buy a ticket.</p>
 {% endif %}
 
-<hr>
-
 {% if is_organizer %}
-    <a href="{% url 'create_discount' event.id %}">Create Discount Code</a>
+    <p><a href="{% url 'create_discount' event.id %}">Create Discount Code</a></p>
 {% endif %}
 
-<a href="{% url 'event_list' %}">Back to Event List</a>
+<p><a href="{% url 'event_list' %}">Back to Event List</a></p>
+{% endblock %}

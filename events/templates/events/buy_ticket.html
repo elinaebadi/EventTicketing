@@ -1,6 +1,11 @@
-<h1>Buy Ticket for {{ event.title }}</h1>
+{% extends 'events/base.html' %}
 
-<form method="POST">
+{% block title %}Buy Ticket{% endblock %}
+
+{% block content %}
+<h2>Buy Ticket for {{ event.title }}</h2>
+
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
@@ -15,4 +20,5 @@
     <button type="submit">Complete Purchase</button>
 </form>
 
-<a href="{% url 'event_detail' event.id %}">Back</a>
+<p><a href="{% url 'event_detail' event.id %}">Back</a></p>
+{% endblock %}
